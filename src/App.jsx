@@ -32,7 +32,6 @@ export function App() {
     setDays(['Sunday', ...days, 'Thursday'])
   }
 
-  // validacija -- vrakja poraka za greska ili "" ako e se vo red
   function validateTodo(text) {
     if (text === "") return "TODO ne smee da bide prazno!";
     if (text.length < 3) return "TODO mora da ima barem 3 karakteri!";
@@ -43,16 +42,16 @@ export function App() {
   }
 
   function addNewTodo() {
-    const text = newTodo.trim(); // gi trgame prazninite od pocetok i kraj
+    const text = newTodo.trim(); 
 
     const validationError = validateTodo(text);
     if (validationError) {
       setError(validationError);
-      return; // ne dodavame nisto
+      return; 
     }
 
     let newObject = {
-      id: crypto.randomUUID(), // random generiran id (namesto todos.length + 1)
+      id: crypto.randomUUID(), 
       text: text,
       done: false
     }
@@ -62,14 +61,13 @@ export function App() {
   }
 
   function deleteTodo(id) {
-    // ostavi gi samo elementite cij id NE e ednakov na izbraniot
     setTodos(todos.filter(item => item.id !== id));
   }
 
   function markTodoAsDone(todo) {
-    setTodos([...todos.map(item => (item.id === todo.id) ? //go baram kliknatiot element po id
-      { ...item, done: !item.done } // koga ke go najdam kliknatiot element gi kopiram so spread props na toj objekt i menuvam samo done so negacija
-      : item //za site ostanati ne gi cepkaj
+    setTodos([...todos.map(item => (item.id === todo.id) ? 
+      { ...item, done: !item.done } 
+      : item 
     )]);
   }
 
